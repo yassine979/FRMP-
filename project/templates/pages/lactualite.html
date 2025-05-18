@@ -1,0 +1,71 @@
+{% extends "parts/base-pages.html" %}
+{% load static %}
+{% block content %}
+  
+ <!-- SECTION ACTUALITÉS -->
+  <section class="sect-actualites">
+    <div class="actualite-container container py-5">
+      <div class="row mb-4">
+        <div class="col-12">
+          <h2 class="actualite-title">Actualités</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        {% for act in actualites %}
+          <div class="col-lg-4 mb-4">
+            <div class="actualite-card">
+              <div class="actualite-img">
+                <a href="{% url 'detail_actualite' act.pk %}">
+                  <img src="{{ act.image.url }}"
+                       alt="{{ act.titre }}"
+                       class="img-fluid rounded">
+                </a>
+              </div>
+              <div class="actualite-text">
+                <span class="actualite-meta">{{ act.date_pub|date:"d F Y" }}</span>
+                <h3 class="actualite-heading">
+                  <a href="{% url 'detail_actualite' act.pk %}">{{ act.titre }}</a>
+                </h3>
+                <p class="actualite-description">
+                  {{ act.contenu|truncatewords:20 }}
+                </p>
+                <p>
+                  <a href="{% url 'detail_actualite' act.pk %}"
+                     class="actualite-link">Lire plus</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <p>Aucune actualité pour le moment.</p>
+        {% endfor %}
+      </div>
+
+      <!-- Pagination (si besoin) -->
+      <div class="concours-pag-container">
+      {% if actualites.has_other_pages %}
+  <div class="concours-pag-container mt-4 text-center">
+    {% if actualites.has_previous %}
+      <a href="?page={{ actualites.previous_page_number }}&q={{ q }}&date_from={{ date_from }}&date_to={{ date_to }}" class="concours-pag-btn concours-pag-prev">← Précédent</a>
+    {% else %}
+      <span class="concours-pag-btn concours-pag-disabled concours-pag-prev">← Précédent</span>
+    {% endif %}
+
+    <span class="concours-pag-current mx-3">
+      Page {{ actualites.number }} sur {{ actualites.paginator.num_pages }}
+    </span>
+
+    {% if actualites.has_next %}
+      <a href="?page={{ actualites.next_page_number }}&q={{ q }}&date_from={{ date_from }}&date_to={{ date_to }}" class="concours-pag-btn concours-pag-next">Suivant →</a>
+    {% else %}
+      <span class="concours-pag-btn concours-pag-disabled concours-pag-next">Suivant →</span>
+    {% endif %}
+  </div>
+{% endif %}
+
+    </div>
+    </div>
+  </section>
+  
+{% endblock %}

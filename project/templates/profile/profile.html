@@ -1,0 +1,59 @@
+{% extends 'parts/base-pages.html' %}
+{% load static %} 
+{% block content %}
+<div class="text-center flex flex-col items-center">
+    <!-- Affichage de la photo de profil -->
+    <img id="avatar" class="w-36 h-36 rounded-full object-cover my-4" 
+         src="{{ user.profile.avatar }}" 
+         alt="Photo de profil" style=" width: 150px;
+         height: 150px;
+         border-radius: 50%; 
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+         transition: transform 0.3s ease, box-shadow 0.3s ease; 
+     
+     " />
+
+    <div class="text-center max-w-md">
+        <!-- Affichage du nom complet et du nom d'utilisateur -->
+        <h1 id="displayname">{{ user.full_name|default:"user" }}</h1>
+        <div class="text-gray-400 mb-2 -mt-3">@{{ user.username }}</div>
+    </div>
+</div>
+
+<!-- Formulaire pour mettre à jour la photo de profil -->
+ <section>
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+</form>
+</section>
+<section>
+
+
+</section>
+
+<script>
+    // Mettre à jour l'aperçu de l'avatar
+    const fileInput = document.querySelector('input[type="file"]');
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        const image = document.querySelector('#avatar');
+
+        if (file && file.type.includes('image')) {
+            const url = URL.createObjectURL(file);
+            image.src = url;
+        }
+    });
+
+    // Mettre à jour l'affichage du nom complet
+    const displayNameInput = document.getElementById('id_full_name');
+    const displayNameOutput = document.getElementById('displayname');
+
+    if (displayNameInput && displayNameOutput) {
+        displayNameInput.addEventListener('input', (event) => {
+            displayNameOutput.textContent = event.target.value || "user";
+        });
+    }
+</script>
+{% endblock %}

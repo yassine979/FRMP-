@@ -1,0 +1,51 @@
+{% extends "parts/base-pages.html" %}
+{% load static %}
+
+{% block content %}
+<section class="sect-detail-actualite container py-5">
+  <div class="row g-0 align-items-center">
+    <!-- Colonne image -->
+    {% if act.image %}
+    <div class="col-md-6 detail-img-col">
+      <img src="{{ act.image.url }}"
+           alt="{{ act.titre }}"
+           class="img-fluid w-100 h-100 object-cover">
+    </div>
+    {% endif %}
+
+    <!-- Colonne contenu -->
+    <div class="col-md-6 detail-content-col">
+      <div class="detail-card p-4">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-3">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="{% url 'page_actualite' %}">Actualités</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ act.titre }}</li>
+          </ol>
+        </nav>
+
+        <!-- Titre & Méta -->
+        <header class="detail-header mb-3">
+          <h1 class="detail-titre">{{ act.titre }}</h1>
+          <p class="detail-meta text-muted mb-0">
+            Publié le {{ act.date_pub|date:"d F Y" }}
+            {% if act.ligue %} — Ligue {{ act.ligue.nom }}{% endif %}
+          </p>
+        </header>
+
+        <!-- Contenu de l’article -->
+        <article class="detail-contenu mb-4">
+          {{ act.contenu|linebreaks }}
+        </article>
+
+        <!-- Bouton retour -->
+        <p class="mb-0">
+          <a href="{% url 'page_actualite' %}" class="btn btn-primary">
+            ← Retour aux actualités
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

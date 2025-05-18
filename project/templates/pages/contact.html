@@ -1,0 +1,44 @@
+{% extends "parts/base-pages.html" %}
+{% load static %}
+{% block content %}
+  <!-- contact section -->
+
+  <section class="contact_section layout_padding">
+    <div class="contact_bg_box">
+      <div class="img-box">
+        <img src="{% static 'images/boulodrome-1024x682.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Get In touch
+        </h2>
+      </div>
+      <div class="">
+        <div class="row">
+          <div class="col-md-7 mx-auto">
+            <form method="post">
+               {% csrf_token %}
+            <div class="contact_form-container">
+              <div>
+                {{ form.non_field_errors }}
+      <div>{{ form.full_name }}</div>
+      <div>{{ form.email }}</div>
+      <div>{{ form.phone }}</div>
+      <div>{{ form.message }}</div>
+      <div class="btn-box">
+        <button type="submit">Send</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end contact section -->
+{% endblock %}

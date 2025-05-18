@@ -1,0 +1,133 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+
+}
+
+body {
+    background: url("../images/playing-petanque.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.456);
+}
+.login-container{
+    max-width: 350px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 10px #007bff94;
+    backdrop-filter: blur(8px);
+}
+
+.signup-container{
+    max-width: 450px;
+    width: 100%;
+    padding: 25px;
+}
+h2{
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: 600;
+}
+label{
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="password1"],
+input[type="password2"]
+{
+    width: 100%;
+    padding: 10px;
+    margin:  20px 0;
+    border-radius: 8px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+}
+
+.login-btn,.btne{
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.social-btn{
+    width: 90%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+    margin: 30px auto;
+    gap: 10px;
+}
+.social-btn a {
+    color:#000000 ;
+    text-decoration: none;
+    font-size: 1rem;
+}
+.social-btn:hover{
+    background-color: #d9dadb;
+}
+.social-btn img{
+    width: 30px;
+    height: 30px;
+   
+}
+.sign-in{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    color: #fff;
+    font-size: 0.8rem;
+}
+.sign-in p{
+    font-size: 1rem;
+    color: #fff;
+   
+}
+.sign-in a{
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}

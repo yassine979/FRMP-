@@ -1,0 +1,268 @@
+{% extends "parts/base-home.html" %}
+{% load static %}
+{% block content %}
+<section class="home-actualites container py-5">
+  <div class="heading_container heading_center">
+      <h2>
+          Nos dernières actualités
+      </h2>
+  </div>
+  <div id="carouselActualites" class="carousel slide" data-bs-ride="carousel">
+   <div class="carousel-inner">
+  {% for slide in actualites_vitrine %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      <div class="row">
+        {% for act in slide %}
+          <div class="col-md-4">
+            <div class="card mb-3">
+              {% if act.image %}
+                <img src="{{ act.image.url }}" class="card-img-top" alt="{{ act.titre }}" style="height:180px; object-fit:cover;">
+              {% endif %}
+              <div class="card-body">
+                <h5 class="card-title">{{ act.titre|truncatechars:40 }}</h5>
+                <p class="card-text text-muted">{{ act.date_pub|date:"d M Y" }}</p>
+                <a href="{% url 'detail_actualite' act.pk %}" class="btn btn-sm btn-primary">Lire plus</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+    <div class="container indicator_container">
+  <ol class="carousel-indicators">
+    {% for slide in actualites_vitrine %}
+      <li data-bs-target="#carouselActualites" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
+    {% endfor %}
+  </ol>
+</div>
+  </div>
+</section>
+
+  
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 px-0">
+          <div class="img_container">
+            <div class="img-box">
+              <img src="{% static 'images/elderly-friends-playing-petanque (3).jpg' %}" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 px-0">
+          <div class="detail-box">
+            <div class="heading_container ">
+              <h2>
+                qui sommes nous ?
+              </h2>
+            </div>
+            <p>
+              nous sommes une plateforme dédiée à la promotion de la pétanque au Maroc, un sport qui allie tradition et modernité. Notre mission est de rassembler les passionnés de pétanque, qu'ils soient débutants ou experts, autour d'une même passion. Nous organisons des événements, des tournois et des rencontres pour encourager la pratique de ce sport convivial et stratégique
+            </p>
+            <div class="btn-box">
+              <a href="">
+                lire plus
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+  <!-- service section -->
+
+  <section class="service_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          nos services
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="box ">
+            <div class="img-box">
+             <i class="bi bi-newspaper" style="font-size: 3rem;"></i> 
+            </div>
+            <div class="detail-box">
+              <h6>
+                dernière actualité
+              </h6>
+              <p>
+                publier les dernières nouvelles et événements liés à la pétanque au Maroc, y compris les tournois, les compétitions et les initiatives locales visant à promouvoir ce sport.
+              </p>
+              <a href="">
+                lire plus
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="box ">
+            <div class="img-box">
+             <i class="fas fa-balance-scale" style="font-size: 3rem;"></i>             
+            </div>
+            <div class="detail-box">
+              <h6>
+                réglementation
+              </h6>
+              <p>
+                fournir des informations sur les règles et règlements de la pétanque au Maroc, y compris les normes de jeu, les équipements autorisés et les exigences pour participer à des compétitions officielles.
+              </p>
+              <a href="">
+                lire plus
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="box ">
+             <div class="img-box">
+              <i class="fas fa-users" style="font-size: 3rem;"></i>
+            </div>
+            <div class="detail-box">
+              <h6>
+                avis et témoignages
+              </h6>
+              <p>
+                recueillir et partager des avis et témoignages de joueurs, d'organisateurs d'événements et de passionnés de pétanque au Maroc, afin de créer une communauté engagée et de promouvoir le sport à travers des expériences personnelles.
+              </p>
+              <a href="">
+                lire plus
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end service section -->
+
+  <!-- team section -->
+
+  <section class="team_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Our Guards
+        </h2>
+        <p>
+          Lorem ipsum dolor sit amet, non odio tincidunt ut ante, lorem a euismod suspendisse vel, sed quam nulla mauris
+          iaculis. Erat eget vitae malesuada, tortor tincidunt porta lorem lectus.
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-6 mx-auto ">
+          <div class="box">
+            <div class="img-box">
+              <img src="images/t1.jpg" alt="">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Martin Anderson
+              </h5>
+              <h6 class="">
+                supervisor
+              </h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mx-auto ">
+          <div class="box">
+            <div class="img-box">
+              <img src="images/t2.jpg" alt="">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Denny Butler
+              </h5>
+              <h6 class="">
+                supervisor
+              </h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6 mx-auto ">
+          <div class="box">
+            <div class="img-box">
+              <img src="images/t3.jpg" alt="">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Nathan Mcpherson
+              </h5>
+              <h6 class="">
+                supervisor
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="btn-box">
+        <a href="">
+          View All
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- end team section -->
+   
+  <!-- contact section -->
+
+  <section class="contact_section layout_padding">
+    <div class="contact_bg_box">
+      <div class="img-box">
+        <img src="{% static 'images/boulodrome-1024x682.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          contactez-nous
+        </h2>
+      </div>
+      <div class="">
+        <div class="row">
+          <div class="col-md-7 mx-auto">
+            <form action="#">
+              <div class="contact_form-container">
+                <div>
+                  <div>
+                    <input type="text" placeholder="Full Name" />
+                  </div>
+                  <div>
+                    <input type="email" placeholder="Email " />
+                  </div>
+                  <div>
+                    <input type="text" placeholder="Phone Number" />
+                  </div>
+                  <div class="">
+                    <input type="text" placeholder="Message" class="message_input" />
+                  </div>
+                  <div class="btn-box ">
+                    <button type="submit">
+                      envoyer
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end contact section -->
+</div>
+{% endblock %}

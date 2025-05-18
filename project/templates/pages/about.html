@@ -1,0 +1,99 @@
+{% extends "parts/base-pages.html" %}
+{% load static %}
+{% block content %}
+    <!-- about section -->
+     <div class="about_section layout_padding">
+        <div class="container">
+            <div class="heading_container heading_center">
+                <h2>
+                    À propos de la Fédération Royale Marocaine de Pétanque
+                </h2>
+            </div>
+        </div>
+    </div>
+    <img class="FRMP" src="{% static 'images/94d43e327d9303539cb1e2aac7032668_XL.jpg' %}" >
+    <section class="presant container my-5">
+        <div class="row align-items-center mb-4">
+                <div class="">
+                        <h3 class="text-primary">📌 Les débuts</h3>
+                        <p class="text-justify">
+                                La pétanque a été introduite au Maroc durant la période du protectorat, notamment dans les régions côtières comme Casablanca, Rabat et Agadir, où les Français ont implanté ce sport populaire du Sud de la France. Rapidement, elle a séduit les Marocains, devenant un véritable sport de loisir, puis de compétition.
+                        </p>
+                        <p class="text-justify">
+                                Devant l'engouement grandissant, la nécessité de créer une instance officielle s’est imposée. C’est ainsi que la Fédération Marocaine de Pétanque fut créée dans les années 1950. Elle sera plus tard reconnue officiellement et bénéficiera du statut de Fédération Royale, soulignant son importance nationale.
+                        </p>
+                </div>
+                <div class=" text-center">
+                        <!-- Removed individual image -->
+                </div>
+        </div>
+        <hr class="my-4">
+        <div class="row align-items-center mb-4">
+                <div class=" text-center order-md-2">
+                        <!-- Removed individual image -->
+                </div>
+                <div class=" order-md-1">
+                        <h3 class="text-primary">⚙️ Notre Histoire</h3>
+                        <p class="text-justify">
+                                La Fédération Royale Marocaine de Pétanque (FRMP) a vu le jour dans le but de structurer, développer et promouvoir la pratique de la pétanque au Maroc. Elle représente aujourd’hui l’organe officiel chargé de régir ce sport sur l’ensemble du territoire national.
+                        </p>
+                        <p class="text-justify">
+                                Au fil des décennies, la FRMP a mis en place un réseau solide de ligues régionales, de clubs affiliés et de compétitions nationales. Elle a instauré un calendrier sportif national, organisé les championnats du Maroc dans plusieurs catégories (jeunes, seniors, vétérans) et œuvré pour la formation des arbitres et entraîneurs.
+                        </p>
+                </div>
+        </div>
+        <hr class="my-4">
+        <div class="row align-items-center mb-4">
+                <div class="">
+                        <h3 class="text-primary">🌍 Sur la scène internationale</h3>
+                        <p class="text-justify">
+                                La FRMP est membre de la Fédération Internationale de Pétanque et Jeu Provençal (FIPJP). Elle représente le Maroc dans de nombreuses compétitions internationales, notamment les Championnats du Monde, les Jeux Méditerranéens, et les Championnats d’Afrique, où les athlètes marocains ont souvent brillé par leurs performances.
+                        </p>
+                </div>
+                <div class=" text-center">
+                        <!-- Removed individual image -->
+                </div>
+        </div>
+        <hr class="my-4">
+        <div class="row align-items-center">
+                <div class=" text-center order-md-2">
+                        <!-- Removed individual image -->
+                </div>
+                <div class=" order-md-1">
+                        <h3 class="text-primary">🚀 Une mission en pleine expansion</h3>
+                        <p class="text-justify">
+                                Aujourd’hui, la FRMP poursuit son objectif de démocratiser la pétanque, notamment à travers les jeunes générations. Elle favorise l’accès aux infrastructures, soutient les clubs locaux et participe activement à l’évolution de la réglementation mondiale de la pétanque.
+                        </p>
+                </div>
+        </div>
+    </section>
+
+    <!-- end about section -->
+    <section class="reglement container my-5">
+        <h2 class="text-center mb-4">Règlement officiel de la pétanque</h2>
+        <div class="row align-items-center mb-4">
+                <div class="">
+                        <h3 class="text-primary">📜 Règlement de la pétanque</h3>
+                        <p class="text-justify">
+                                La pétanque est un jeu de boules qui se joue en extérieur, généralement sur un terrain en terre battue ou en gravier. Le but du jeu est de lancer des boules en métal le plus près possible d'une petite boule appelée "cochonnet". Voici les règles principales :
+                        </p>
+                        <ul>
+                                <li>Le jeu se joue entre deux équipes, chacune composée de un à trois joueurs.</li>
+                                <li>Chaque joueur dispose de trois boules.</li>
+                                <li>Le joueur qui commence doit lancer le cochonnet à une distance de 6 à 10 mètres.</li>
+                                <li>Le joueur doit ensuite lancer sa première boule en essayant de la placer le plus près possible du cochonnet.</li>
+                                <li>Les joueurs alternent les lancers jusqu'à ce qu'une équipe ait placé toutes ses boules ou que le cochonnet soit touché.</li>
+                                <li>Une fois que toutes les boules ont été lancées, l'équipe la plus proche du cochonnet marque un point pour chaque boule qui est plus proche que la boule la plus proche de l'adversaire.</li>
+                                <li>Le jeu continue jusqu'à ce qu'une équipe atteigne un certain nombre de points, généralement 13.</li>
+                        </ul>
+                        <p class="text-justify">
+                                Il existe de nombreuses variantes et règles spécifiques selon les régions, mais ces règles de base sont généralement acceptées dans le monde entier. La pétanque est un jeu convivial qui peut
+                                être joué par des personnes de tous âges et de tous niveaux de compétence.
+                        </p>
+                </div>
+                <div class=" text-center">
+                        <a href="{% static 'pdf/reglement-officiel-petanque.pdf' %}">Télécharger le règlement complet ici 🧷</a>
+                </div>
+        </div>
+    </section>
+{% endblock %}

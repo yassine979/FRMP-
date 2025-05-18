@@ -31,18 +31,22 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
+    'jazzmin',
+    'pages.apps.PagesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
     'crispy_bootstrap5',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'django_extensions',
+      # Nécessaire pour django-allauth
+     # Pour le thème admin
     # Ajoutez d'autres applications si nécessaire
 ]
 
@@ -86,7 +90,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+AUTH_USER_MODEL = 'pages.customuser'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -123,8 +127,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles_dirs')]  # Répertoire pour vos fichiers statiques personnalisés
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # Répertoire pour collectstatic
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Répertoire pour vos fichiers statiques personnalisés
+STATIC_URL1 = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -140,8 +144,25 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
-
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+ # Remplacez par le modèle d'utilisateur personnalisé si vous en avez un
 SITE_ID = 1
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'index'
+
+#redirection url after logout
+LOGOUT_REDIRECT_URL = 'account_login'
+
+# django-allauth settings
+ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
+ACCOUNT_LOGIN_METHODS = {'username', 'email'}
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+
+# Facultatif selon tes besoins
+LOGIN_REDIRECT_URL = '/'

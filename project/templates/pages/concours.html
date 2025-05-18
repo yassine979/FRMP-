@@ -1,0 +1,253 @@
+{% extends "parts/base-pages.html" %}
+{% load static %}
+{% block content %}
+<section class="concours-section">
+  <div class="concours-container">
+    <div class="heading_container heading_center">
+        <h2>
+          Liste des Concours
+        </h2>
+    </div>
+
+    <input type="text" id="concoursSearch" class="concours-search" onkeyup="filterConcours()" placeholder="Rechercher un concours...">
+
+    <div id="concoursList">
+      {% for concour in page_obj %}
+        <div class="concour-card">
+          <img src="{{ concour.image.url }}" alt="Image concours" class="concour-image">
+          <div class="concour-info">
+            <h2 class="concour-name">{{ concour.nom }}</h2>
+            <p class="concour-ligue"><strong>Ligue :</strong> {{ concour.ligue.nom }}</p>
+            <p class="concour-club"><strong>Club :</strong> {{ concour.club.nom }}</p>
+            <p class="concour-dates"><strong>Date :</strong> du {{ concour.date_debut|date:"d/m/Y" }} au {{ concour.date_fin|date:"d/m/Y" }}</p>
+            <button class="concour-btn" onclick="openModal('modal{{ forloop.counter }}')">Afficher</button>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="modal{{ forloop.counter }}" class="concours-modal">
+          <div class="concours-modal-content">
+            <span class="concours-close" onclick="closeModal('modal{{ forloop.counter }}')">&times;</span>
+            <h2 class="concours-modal-title">{{ concour.nom }}</h2>
+            <img src="{{ concour.image.url }}" alt="Image concours" class="concours-modal-image">
+            <p class="concours-modal-description"><strong>Description :</strong> {{ concour.description }}</p>
+            <p class="concours-modal-dates"><strong>Dates :</strong> Du {{ concour.date_debut|date:"d/m/Y" }} au {{ concour.date_fin|date:"d/m/Y" }}</p>
+          </div>
+        </div>
+      {% empty %}
+        <p class="concours-empty">Aucun concours trouvé.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="concours-pag-container">
+      {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="concours-pag-btn concours-pag-prev">Précédent</a>
+      {% else %}
+        <span class="concours-pag-btn concours-pag-disabled concours-pag-prev">Précédent</span>
+      {% endif %}
+
+      <span class="concours-pag-current">Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}</span>
+
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="concours-pag-btn concours-pag-next">Suivant</a>
+      {% else %}
+        <span class="concours-pag-btn concours-pag-disabled concours-pag-next">Suivant</span>
+      {% endif %}
+    </div>
+
+  </div>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      document.querySelectorAll(".concours-modal").forEach(modal => {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+
+    function filterConcours() {
+      var input = document.getElementById("concoursSearch");
+      var filter = input.value.toLowerCase();
+      var cards = document.querySelectorAll(".concour-card");
+
+      cards.forEach(function(card) {
+        var title = card.querySelector("h2").innerText.toLowerCase();
+        card.style.display = title.includes(filter) ? "flex" : "none";
+      });
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+    .concours-section {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f5f5;
+      padding: 40px 0;
+    }
+
+    .concours-container {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .concours-title {
+      text-align: center;
+      font-weight: 700;
+      color: #1a73e8;
+      margin-bottom: 30px;
+    }
+
+    .concours-search {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 30px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .concour-card {
+      display: flex;
+      gap: 20px;
+      border-bottom: 1px solid #eee;
+      padding: 20px 0;
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+
+    .concour-image {
+      width: 300px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .concour-info h2 {
+      margin-top: 0;
+      color: #149819;
+      font-weight: 600;
+    }
+
+    .concour-info p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    .concour-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color:#149819;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .concour-btn:hover {
+      background-color: #149819;
+    }
+
+    /* Modal Styling */
+    .concours-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .concours-modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 25px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+      animation: concoursFadeIn 0.3s ease-in-out;
+    }
+
+    .concours-modal-image {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .concours-close {
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .concours-close:hover {
+      color: #e74c3c;
+    }
+
+    @keyframes concoursFadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .concours-pag-container {
+      text-align: center;
+      margin-top: 30px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .concours-pag-btn {
+      display: inline-block;
+      margin: 0 8px;
+      padding: 8px 16px;
+      background-color: #149819;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .concours-pag-btn:hover {
+      background-color: #149819;
+    }
+
+    .concours-pag-disabled {
+      background-color: #ccc;
+      cursor: default;
+    }
+
+    .concours-pag-current {
+      font-weight: 600;
+      margin: 0 10px;
+    }
+
+    .concours-empty {
+      text-align: center;
+      color: #777;
+      font-style: italic;
+      margin-top: 30px;
+    }
+  </style>
+</section>
+
+{% endblock %}
